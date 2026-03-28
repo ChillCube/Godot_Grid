@@ -6,7 +6,7 @@ class_name GridObject
 @export var coordinate_x : int = 0
 @export var coordinate_y : int = 0
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: # the process
 	if continous_movement:
 		_move(Vector2(coordinate_x, coordinate_y))
 
