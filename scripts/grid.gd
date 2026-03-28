@@ -1,22 +1,26 @@
-## This node is used to create in game grid coordinates. It can take both grid coordinates and the actual position as input and convert into the other.
-## This can be used for strategy games like chess, or games with grid movement, like pokemon. 
-extends Node2D
+extends TileMapLayer
 class_name Grid
 
-@export var tile_size_x : float = 100;
-@export var tile_size_y : float = 100;
-
-## defines whether the grid should have borders or not
-@export var borders : bool = true;
-@export var max_tiles_x : int = 100;
-@export var max_tiles_y : int = 100;
-
 func get_grid_coordinate(_position: Vector2) -> Vector2:
-	var x : int = round((_position.x - global_position.x)/ tile_size_x) 
-	var y : int = round((_position.y - global_position.y)/ tile_size_y) 
-	return Vector2(x,y)
+	# 1. Convert global mouse/card position to the TileMap's local space
+	var local_pos = to_local(_position)
+	
+	# 2. local_to_map automatically handles the "center vs corner" math 
+	# by determining which cell boundary the point falls into.
+	var map_coord = local_to_map(local_pos)
+	
+	return Vector2(map_coord.x, map_coord.y)
 
 func get_grid_position(coordinate : Vector2) -> Vector2:
-	var x : int = global_position.x + (coordinate.x * tile_size_x) 
-	var y : int = global_position.y + (coordinate.y * tile_size_y) 
-	return Vector2(x,y)
+	# 3. Convert the Vector2 back to the specific Integer format TileMapLayer needs
+	var map_coord = Vector2i(int(coordinate.x), int(coordinate.y))
+	
+	# 4. map_to_local returns the CENTER of the cell in local space
+	var local_center = map_to_local(map_coord)
+	
+	# 5. Return that center point in Global/World space
+	return to_global(local_center)
+
+func is_valid_tile(coordinate: Vector2) -> bool:
+	var map_coord = Vector2i(int(coordinate.x), int(coordinate.y))
+	return get_cell_source_id(map_coord) != -1

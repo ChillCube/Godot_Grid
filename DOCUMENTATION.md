@@ -1,5 +1,5 @@
 # Godot_Grid API Reference
-Generated: 2026-03-10
+Generated: 2026-03-28
 
 An addon that manages grid placement. Useful for card games, strategy games, among others
 
@@ -16,10 +16,8 @@ An addon that manages grid placement. Useful for card games, strategy games, amo
 ---
 
 ## Class: Grid
-**Inherits:** [Node2D](https://docs.godotengine.org/en/stable/classes/class_node2d.html)
+**Inherits:** [TileMapLayer](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html)
 
-This node is used to create in game grid coordinates. It can take both grid coordinates and the actual position as input and convert into the other.
-This can be used for strategy games like chess, or games with grid movement, like pokemon. 
 
 ---
 
