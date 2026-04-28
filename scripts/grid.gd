@@ -11,16 +11,15 @@ func get_grid_coordinate(_position: Vector2) -> Vector2:
 	# If the toggle is on and the current tile is empty, find the neighbor
 	if force_to_nearest_tile and get_cell_source_id(map_coord) == -1:
 		map_coord = _get_nearest_valid_cell(map_coord)
-		
 	return Vector2(map_coord.x, map_coord.y)
 
 func get_grid_position(coordinate : Vector2) -> Vector2:
 	var map_coord = Vector2i(int(coordinate.x), int(coordinate.y))
 	
-	# Safety check: if the coordinate passed in isn't valid, 
-	# and we want to force it, find the closest one.
+	# Safety check: if the coordinate passed in isn't valid 
+	# and we want to force it, find the closest one. 
 	if force_to_nearest_tile and get_cell_source_id(map_coord) == -1:
-		map_coord = _get_nearest_valid_cell(map_coord)
+		map_coord = _get_nearest_valid_cell(map_coord) 
 		
 	var local_center = map_to_local(map_coord)
 	return to_global(local_center)
