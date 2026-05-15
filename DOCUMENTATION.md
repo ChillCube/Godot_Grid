@@ -1,5 +1,5 @@
 # Godot_Grid API Reference
-Generated: 2026-04-19
+Generated: 2026-05-15
 
 An addon that manages grid placement. Useful for card games, strategy games, among others
 
