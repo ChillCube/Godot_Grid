@@ -1,3 +1,4 @@
+@icon("res://addons/Godot_Grid/pawn.png")
 extends Node2D
 class_name GridObject
 

@@ -1,3 +1,4 @@
+@icon("res://addons/Godot_Grid/icon_grid.png")
 extends TileMapLayer
 class_name Grid
 

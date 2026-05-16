@@ -1,3 +1,4 @@
+@icon("res://addons/Godot_Grid/king.png")
 extends GridObject
 class_name GridPlayer
 
@@ -15,4 +16,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		coordinate_y += 1;
 	if event.is_action_pressed(input_up):
 		coordinate_y -= 1;
-
