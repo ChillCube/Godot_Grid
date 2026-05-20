@@ -2,10 +2,22 @@
 extends Node2D
 class_name GridObject
 
+signal coordinate_changed(old_coordinate: Vector2, new_coordinate: Vector2) ## Emitted when the grid coordinate changes
+
 @export var grid : Grid; ## The Grid (TileMapLayer) this object snaps to
 @export var continous_movement : bool = true; ## If true, position is updated every frame to follow coordinate changes
-@export var coordinate_x : int = 0 ## Current column on the grid
-@export var coordinate_y : int = 0 ## Current row on the grid
+@export var coordinate_x : int = 0: ## Current column on the grid
+	set(val):
+		if coordinate_x != val:
+			var old := Vector2(coordinate_x, coordinate_y)
+			coordinate_x = val
+			coordinate_changed.emit(old, Vector2(coordinate_x, coordinate_y))
+@export var coordinate_y : int = 0: ## Current row on the grid
+	set(val):
+		if coordinate_y != val:
+			var old := Vector2(coordinate_x, coordinate_y)
+			coordinate_y = val
+			coordinate_changed.emit(old, Vector2(coordinate_x, coordinate_y))
 
 func _process(delta: float) -> void: ## Each frame: moves parent to the current grid coordinate if continous_movement is on
 	if continous_movement:

@@ -29,6 +29,11 @@ An addon that manages grid placement. Useful for card games, strategy games, amo
 | **coordinate_x** | `int` | `0` | Current column on the grid |
 | **coordinate_y** | `int` | `0` | Current row on the grid |
 
+### 🔔 Signals
+| Signal | Arguments | Description |
+| :--- | :--- | :--- |
+| **coordinate_changed** | `old_coordinate: Vector2`<br>`new_coordinate: Vector2` |  Emitted when the grid coordinate changes |
+
 ### 🛠️ Methods
 | Method | Arguments | Returns | Description |
 | :--- | :--- | :--- | :--- |
