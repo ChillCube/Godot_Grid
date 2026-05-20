@@ -5,7 +5,7 @@ class_name Grid
 ## If true, the grid will force any coordinate to the nearest painted tile
 @export var force_to_nearest_tile : bool = false
 
-func get_grid_coordinate(_position: Vector2) -> Vector2:
+func get_grid_coordinate(_position: Vector2) -> Vector2: ## Converts a global world position to a grid coordinate; snaps to nearest painted tile if force_to_nearest_tile is on
 	var local_pos = to_local(_position)
 	var map_coord = local_to_map(local_pos)
 	
@@ -14,7 +14,7 @@ func get_grid_coordinate(_position: Vector2) -> Vector2:
 		map_coord = _get_nearest_valid_cell(map_coord)
 	return Vector2(map_coord.x, map_coord.y)
 
-func get_grid_position(coordinate : Vector2) -> Vector2:
+func get_grid_position(coordinate : Vector2) -> Vector2: ## Converts a grid coordinate back to a global world position (center of that tile)
 	var map_coord = Vector2i(int(coordinate.x), int(coordinate.y))
 	
 	# Safety check: if the coordinate passed in isn't valid 
@@ -25,7 +25,7 @@ func get_grid_position(coordinate : Vector2) -> Vector2:
 	var local_center = map_to_local(map_coord)
 	return to_global(local_center)
 
-func is_valid_tile(coordinate: Vector2) -> bool:
+func is_valid_tile(coordinate: Vector2) -> bool: ## Returns true if there is a painted tile at the given grid coordinate
 	var map_coord = Vector2i(int(coordinate.x), int(coordinate.y))
 	return get_cell_source_id(map_coord) != -1
 
